@@ -1,0 +1,8 @@
+#cloud-config
+coreos:
+  flannel:
+    etcd_endpoints: "http://MASTERIP:2379"
+    interface: LOCALIP
+  units:
+    - name: flanneld.service
+      command: start

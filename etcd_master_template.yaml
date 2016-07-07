@@ -1,0 +1,16 @@
+#cloud-config
+coreos:
+  etcd2:
+    name: "etcMaster"
+    advertise-client-urls: "http://MASTERIP:2379"
+    listen-client-urls: "http://0.0.0.0:2379,http://0.0.0.0:4001"
+    initial-advertise-peer-urls: "http://MASTERIP:2380"
+    initial-cluster: "etcMaster=http://MASTERIP:2380"
+    listen-peer-urls: "http://MASTERIP:2380,http://MASTERIP:7001"
+  fleet:
+    public-ip: MASTERIP
+  units:
+    - name: etcd2.service
+      command: start
+    - name: fleet.service
+      command: start

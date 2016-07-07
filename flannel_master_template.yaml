@@ -1,0 +1,7 @@
+#cloud-config
+coreos:
+  flannel:
+    interface: MASTERIP
+  units:
+    - name: flanneld.service
+      command: start
